@@ -21,5 +21,5 @@ $sums = Get-ChildItem -LiteralPath $target -File -Recurse | Sort-Object FullName
     (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant() + '  ' + $_.FullName.Substring($target.Length + 1).Replace('\','/')
 }
 [IO.File]::WriteAllLines((Join-Path $target 'SHA256SUMS.txt'),$sums,[Text.Encoding]::UTF8)
-Compress-Archive -LiteralPath $target -DestinationPath (Join-Path $root 'dist/Kontur-1.0.0-win-x64.zip')
+Compress-Archive -LiteralPath $target -DestinationPath (Join-Path $root 'dist/Kontur-1.0.1-win-x64.zip')
 Write-Output "Package ready: $target"

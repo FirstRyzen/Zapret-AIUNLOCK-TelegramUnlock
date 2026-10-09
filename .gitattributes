@@ -1,9 +1,7 @@
-*.cs text eol=crlf
-*.ps1 text eol=crlf
-*.md text eol=lf
-*.args text eol=lf
+* -text
 *.exe binary
 *.dll binary
 *.sys binary
 *.bin binary
 *.ico binary
+*.png binary

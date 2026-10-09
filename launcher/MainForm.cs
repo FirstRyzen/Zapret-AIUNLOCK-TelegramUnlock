@@ -1,4 +1,4 @@
-// THESIS: Контур is a compact native control desk for choosing and running strategies.
+﻿// THESIS: Контур is a compact native control desk for choosing and running strategies.
 // OWN-WORLD: chalk workspace, graphite navigation, forest-green action, Segoe UI.
 // STORY: choose a profile, start its engine, inspect the actual process state.
 // FIRST VIEWPORT: navigation left; status, profile picker and launch action right.
@@ -17,7 +17,7 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Контур")]
 [assembly: AssemblyProduct("Контур")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
 
 namespace Kontur {
  public class Settings {
@@ -101,7 +101,7 @@ namespace Kontur {
     var b=new Button {Text=name,Tag=name,Location=new Point(14,y),Size=new Size(182,46),FlatStyle=FlatStyle.Flat,TextAlign=ContentAlignment.MiddleLeft,Padding=new Padding(14,0,0,0),ForeColor=Color.White,BackColor=ink,Cursor=Cursors.Hand};
     b.FlatAppearance.BorderSize=0; b.Click+=(s,e)=>Navigate((string)((Button)s).Tag); side.Controls.Add(b); navigation.Add(b); y+=53;
    }
-   var foot=new Label {Text="Версия 1.0.0\nWindows · x64",Location=new Point(25,590),Size=new Size(160,55),ForeColor=Color.FromArgb(193,210,200),Anchor=AnchorStyles.Bottom|AnchorStyles.Left}; side.Controls.Add(foot);
+   var foot=new Label {Text="Версия 1.0.1\nWindows · x64",Location=new Point(25,590),Size=new Size(160,55),ForeColor=Color.FromArgb(193,210,200),Anchor=AnchorStyles.Bottom|AnchorStyles.Left}; side.Controls.Add(foot);
    work.Dock=DockStyle.Fill; work.Padding=new Padding(34); work.AutoScroll=true; Controls.Add(work); work.BringToFront();
    tray=new NotifyIcon {Icon=Icon,Text="Контур — остановлен",Visible=false};
    var menu=new ContextMenuStrip(); menu.Items.Add("Открыть Контур",null,(s,e)=>Restore()); menu.Items.Add("Остановить",null,(s,e)=>StopEngine()); menu.Items.Add("Выход",null,(s,e)=>Close()); tray.ContextMenuStrip=menu; tray.DoubleClick+=(s,e)=>Restore();
@@ -230,7 +230,7 @@ namespace Kontur {
    if(journal!=null) {journal.Text=log.ToString();journal.SelectionStart=journal.TextLength;journal.ScrollToCaret();}
   }
   void About() {
-   Heading("Контур","Версия 1.0.0 · независимая оболочка для Windows");
+   Heading("Контур","Версия 1.0.1 · независимая оболочка для Windows");
    Label("Один интерфейс. Разные маршруты.",36,164,630,80,21,true);
    Label("Выбор из 22 стратегий, настройки игровых портов, свои домены,\nAI Unlock и Telegram-прокси. Исходный код оболочки открыт.",36,270,630,70,11,false).ForeColor=muted;
    Label("Использует движок zapret (bol-van), стратегии Flowseal,\nWinDivert и TG WS Proxy. Название и интерфейс Контур —\nотдельная разработка. ПО предоставляется без гарантий.\nЛицензии компонентов находятся в папке licenses.",36,371,630,115,11,false).ForeColor=muted;
