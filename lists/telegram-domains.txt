@@ -1,0 +1,11 @@
+# Telegram Web, downloads, and the WebSocket transport used by TG WS Proxy.
+telegram.org
+t.me
+telegram.me
+telegram.dog
+telegram.space
+telegram-cdn.org
+tdesktop.com
+telegra.ph
+telesco.pe
+tg.dev

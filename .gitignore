@@ -1,0 +1,12 @@
+dist/
+artifacts/
+*.log
+*.bak
+*.backup
+*.tmp
+utils/ai-unlock-backups/
+utils/ai-unlock-original-bats/
+utils/telegram-original-bats/
+bin/telegram/TgWsProxy_data/
+utils/*.enabled
+utils/*.disabled

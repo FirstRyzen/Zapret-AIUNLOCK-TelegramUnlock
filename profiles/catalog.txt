@@ -1,0 +1,22 @@
+standard|Основной|general.bat
+ALT|ALT1|general (ALT).bat
+ALT2|ALT2|general (ALT2).bat
+ALT3|ALT3|general (ALT3).bat
+ALT4|ALT4|general (ALT4).bat
+ALT5|ALT5|general (ALT5).bat
+ALT6|ALT6|general (ALT6).bat
+ALT7|ALT7|general (ALT7).bat
+ALT8|ALT8|general (ALT8).bat
+ALT9|ALT9|general (ALT9).bat
+ALT10|ALT10|general (ALT10).bat
+ALT11|ALT11|general (ALT11).bat
+ALT12|ALT12|general (ALT12).bat
+ALT13|ALT13|general (ALT13).bat
+EXP|EXP|general (EXP).bat
+FAKE-TLS-AUTO-ALT|FAKE TLS AUTO ALT|general (FAKE TLS AUTO ALT).bat
+FAKE-TLS-AUTO-ALT2|FAKE TLS AUTO ALT2|general (FAKE TLS AUTO ALT2).bat
+FAKE-TLS-AUTO-ALT3|FAKE TLS AUTO ALT3|general (FAKE TLS AUTO ALT3).bat
+FAKE-TLS-AUTO|FAKE TLS AUTO|general (FAKE TLS AUTO).bat
+SIMPLE-FAKE-ALT|SIMPLE FAKE ALT|general (SIMPLE FAKE ALT).bat
+SIMPLE-FAKE-ALT2|SIMPLE FAKE ALT2|general (SIMPLE FAKE ALT2).bat
+SIMPLE-FAKE|SIMPLE FAKE|general (SIMPLE FAKE).bat
