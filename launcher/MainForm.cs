@@ -17,7 +17,7 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Контур")]
 [assembly: AssemblyProduct("Контур")]
-[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.2.0")]
 
 namespace Kontur {
  public class Settings {
@@ -88,7 +88,11 @@ namespace Kontur {
    profiles=Engine.Load(root);
    if(profiles.Count==0) throw new Exception("Каталог профилей пуст.");
    foreach(string name in new[]{"list-general-user.txt","list-exclude-user.txt","ipset-exclude-user.txt"}) {
-    string path=Path.Combine(root,"lists",name); if(!File.Exists(path)) File.WriteAllText(path,"",Encoding.UTF8);
+    string path=Path.Combine(root,"lists",name); if(!File.Exists(path)) File.WriteAllText(path,"",Encoding.ASCII);
+    else if(name=="ipset-exclude-user.txt") {
+     byte[] bytes=File.ReadAllBytes(path);
+     if(bytes.Length>=3&&bytes[0]==0xEF&&bytes[1]==0xBB&&bytes[2]==0xBF) File.WriteAllBytes(path,bytes.Skip(3).ToArray());
+    }
    }
    Text="Контур"; StartPosition=FormStartPosition.CenterScreen; ClientSize=new Size(960,680); MinimumSize=new Size(900,660);
    BackColor=Color.FromArgb(244,246,242); ForeColor=ink; Font=new Font("Segoe UI",10); AutoScaleMode=AutoScaleMode.Dpi;
@@ -101,7 +105,7 @@ namespace Kontur {
     var b=new Button {Text=name,Tag=name,Location=new Point(14,y),Size=new Size(182,46),FlatStyle=FlatStyle.Flat,TextAlign=ContentAlignment.MiddleLeft,Padding=new Padding(14,0,0,0),ForeColor=Color.White,BackColor=ink,Cursor=Cursors.Hand};
     b.FlatAppearance.BorderSize=0; b.Click+=(s,e)=>Navigate((string)((Button)s).Tag); side.Controls.Add(b); navigation.Add(b); y+=53;
    }
-   var foot=new Label {Text="Версия 1.0.1\nWindows · x64",Location=new Point(25,590),Size=new Size(160,55),ForeColor=Color.FromArgb(193,210,200),Anchor=AnchorStyles.Bottom|AnchorStyles.Left}; side.Controls.Add(foot);
+   var foot=new Label {Text="Версия 1.0.2\nWindows · x64",Location=new Point(25,590),Size=new Size(160,55),ForeColor=Color.FromArgb(193,210,200),Anchor=AnchorStyles.Bottom|AnchorStyles.Left}; side.Controls.Add(foot);
    work.Dock=DockStyle.Fill; work.Padding=new Padding(34); work.AutoScroll=true; Controls.Add(work); work.BringToFront();
    tray=new NotifyIcon {Icon=Icon,Text="Контур — остановлен",Visible=false};
    var menu=new ContextMenuStrip(); menu.Items.Add("Открыть Контур",null,(s,e)=>Restore()); menu.Items.Add("Остановить",null,(s,e)=>StopEngine()); menu.Items.Add("Выход",null,(s,e)=>Close()); tray.ContextMenuStrip=menu; tray.DoubleClick+=(s,e)=>Restore();
@@ -230,7 +234,7 @@ namespace Kontur {
    if(journal!=null) {journal.Text=log.ToString();journal.SelectionStart=journal.TextLength;journal.ScrollToCaret();}
   }
   void About() {
-   Heading("Контур","Версия 1.0.1 · независимая оболочка для Windows");
+   Heading("Контур","Версия 1.0.2 · независимая оболочка для Windows");
    Label("Один интерфейс. Разные маршруты.",36,164,630,80,21,true);
    Label("Выбор из 22 стратегий, настройки игровых портов, свои домены,\nAI Unlock и Telegram-прокси. Исходный код оболочки открыт.",36,270,630,70,11,false).ForeColor=muted;
    Label("Использует движок zapret (bol-van), стратегии Flowseal,\nWinDivert и TG WS Proxy. Название и интерфейс Контур —\nотдельная разработка. ПО предоставляется без гарантий.\nЛицензии компонентов находятся в папке licenses.",36,371,630,115,11,false).ForeColor=muted;

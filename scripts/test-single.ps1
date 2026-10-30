@@ -7,6 +7,9 @@ $runtime = [Kontur.Bootstrap]::PrepareRuntime($sandbox)
 if(!(Test-Path -LiteralPath (Join-Path $runtime 'bin/winws.exe'))) {throw 'Embedded engine missing.'}
 if([Kontur.Engine]::Load($runtime).Count -ne 22) {throw 'Embedded profiles missing.'}
 if(Test-Path -LiteralPath (Join-Path $runtime 'bin/telegram/TgWsProxy_data/config.json')) {throw 'Local Telegram secret packaged.'}
+$ipsetExcludeUser=Join-Path $runtime 'lists/ipset-exclude-user.txt'
+$bom=Get-Content -LiteralPath $ipsetExcludeUser -Encoding Byte -TotalCount 3
+if($bom.Count -ge 3 -and $bom[0] -eq 0xEF -and $bom[1] -eq 0xBB -and $bom[2] -eq 0xBF) {throw 'User IP exclude list contains a UTF-8 BOM.'}
 $settings = New-Object Kontur.Settings
 foreach ($profile in [Kontur.Engine]::Load($runtime)) { [void][Kontur.Engine]::Arguments($runtime,$profile,$settings) }
 $customList=Join-Path $runtime 'lists/list-general-user.txt'

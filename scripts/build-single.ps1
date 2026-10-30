@@ -9,7 +9,7 @@ Get-ChildItem -LiteralPath (Join-Path $root 'bin') -File | Where-Object { $_.Ext
 foreach ($file in @('TgWsProxy_windows.exe','LICENSE.txt','release.json')) { Copy-Item -LiteralPath (Join-Path $root "bin/telegram/$file") -Destination (Join-Path $stage 'bin/telegram') }
 Get-ChildItem -LiteralPath (Join-Path $root 'profiles') -File | Where-Object { $_.Extension -in @('.args','.txt') } | Copy-Item -Destination (Join-Path $stage 'profiles')
 foreach ($file in @('list-general.txt','list-google.txt','list-exclude.txt','ipset-all.txt','ipset-exclude.txt','ai-unlock-domains.txt','ai-unlock-hosts.txt','telegram-domains.txt')) { Copy-Item -LiteralPath (Join-Path $root "lists/$file") -Destination (Join-Path $stage 'lists') }
-foreach ($file in @('list-general-user.txt','list-exclude-user.txt','ipset-exclude-user.txt')) { [IO.File]::WriteAllText((Join-Path $stage "lists/$file"),'',[Text.Encoding]::UTF8) }
+foreach ($file in @('list-general-user.txt','list-exclude-user.txt','ipset-exclude-user.txt')) { [IO.File]::WriteAllText((Join-Path $stage "lists/$file"),'',[Text.Encoding]::ASCII) }
 foreach ($file in @('ai-unlock.ps1','telegram-proxy.ps1')) { Copy-Item -LiteralPath (Join-Path $root "utils/$file") -Destination (Join-Path $stage 'utils') }
 Get-ChildItem -LiteralPath (Join-Path $root 'licenses') -File | Copy-Item -Destination (Join-Path $stage 'licenses')
 foreach ($file in @('LICENSE.txt','THIRD_PARTY_NOTICES.md','README.md')) { Copy-Item -LiteralPath (Join-Path $root $file) -Destination $stage }
