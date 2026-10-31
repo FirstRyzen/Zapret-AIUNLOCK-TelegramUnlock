@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
 using System.Reflection;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Kontur {
  public static class Bootstrap {
-  const string Version = "1.0.1";
+  const string Version = "1.1.0";
   static Assembly Package { get { return typeof(Bootstrap).Assembly; } }
   static string Digest(Stream stream) {
    using(var hash=SHA256.Create()) return BitConverter.ToString(hash.ComputeHash(stream)).Replace("-","").ToLowerInvariant();
